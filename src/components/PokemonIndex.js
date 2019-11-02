@@ -71,4 +71,5 @@ class PokemonPage extends React.Component {
 }
 
 export default PokemonPage
-//_.debounce(() => this.searchHandler, 500)
+
+// not working correctly => _.debounce(() => this.searchHandler, 500)
