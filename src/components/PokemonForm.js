@@ -13,6 +13,45 @@ class PokemonForm extends React.Component {
     }
   }
 
+
+  handleSubmit= (evt) => {
+    console.log(evt.target.name.value)
+const name = evt.target.name.value
+const hp = evt.target.hp.value
+const frontUrl= evt.target.frontUrl.value
+const backUrl = evt.target.backUrl.value
+
+   fetch('http://localhost:3000/pokemon',{
+     method: "POST",
+     headers: {
+       'Content-Type' : 'application/json',
+       'accept' : 'application/json'
+     },
+     body: JSON.stringify({
+       height: 6,
+       weight: 210,
+       abilities: ["sageMode", "foxMode"],
+      moves: ["shadowClones", "rasengan","resenshuriken"],
+      types: ["ninjas"],
+      stats:[{value: 100 ,name: "special-attack"},{value: 1000 ,name: "speed"}, {value: 100 ,name: "attack"}, {value: 100 ,name: "hp"}, {value: 100 ,name: "defense"}, {value: 100 ,name: "special-defense"} ],
+       name: name,
+       hp: hp,
+       sprites:{
+
+         front: frontUrl,
+         back: backUrl
+       }
+
+     })
+   })
+   .then(r => r.json())
+   .then(rjson => {
+     console.log(rjson)
+   })
+    
+  }
+
+
   render() {
     return (
       <div>
