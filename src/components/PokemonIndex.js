@@ -5,6 +5,24 @@ import Search from './Search'
 import { Container } from 'semantic-ui-react'
 
 class PokemonPage extends React.Component {
+
+  state = {
+    pokemons: []
+  }
+
+
+  componentDidMount(){
+      fetch("http://localhost:3000/pokemon")
+      .then(r => r.json())
+      .then(data => {
+        
+        this.setState({
+          pokemons: data
+        })
+      })
+  }
+
+
   render() {
     return (
       <Container>
@@ -14,7 +32,7 @@ class PokemonPage extends React.Component {
         <br />
         <Search onChange={() => console.log('🤔')} />
         <br />
-        <PokemonCollection />
+        <PokemonCollection pokemons={this.state.pokemons}/>
       </Container>
     )
   }
